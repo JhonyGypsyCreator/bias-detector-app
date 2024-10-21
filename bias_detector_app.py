@@ -8,7 +8,9 @@ nltk.download('vader_lexicon')
 # Definovanie zoznamu hanlivých a stereotypných výrazov
 negative_words = [
     'neprispôsobiví', 'problémová komunita', 'leniví', 'príživník', 
-    'neprispôsobivý', 'kriminálnik', 'podvodník', 'problematický'
+    'neprispôsobivý', 'kriminálnik', 'podvodník', 'problematický',
+    'špinavý', 'nečestný', 'klamár', 'zlodej', 'nekultúrny','opica','cigáň'
+    # Pridaj ďalšie výrazy podľa potreby
 ]
 
 # Funkcia na detekciu hanlivých slov v texte
@@ -51,9 +53,9 @@ def analyze_text(text):
     num_negative_terms = len(negative_terms)
     sentiment_score = analyze_sentiment(text)
     sentiment = 'Neutrálny'
-    if sentiment_score > 0.1:
+    if sentiment_score > 0.05:
         sentiment = 'Pozitívny'
-    elif sentiment_score < -0.1:
+    elif sentiment_score < -0.05:
         sentiment = 'Negatívny'
     
     return {
