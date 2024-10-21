@@ -9,7 +9,7 @@ nltk.download('vader_lexicon')
 negative_words = [
     'neprispôsobiví', 'problémová komunita', 'leniví', 'príživník', 
     'neprispôsobivý', 'kriminálnik', 'podvodník', 'problematický',
-    'špinavý', 'nečestný', 'klamár', 'zlodej', 'nekultúrny','opica','cigáň'
+    'špinavý', 'nečestný', 'klamár', 'zlodej', 'nekultúrny'
     # Pridaj ďalšie výrazy podľa potreby
 ]
 
@@ -42,8 +42,10 @@ def main():
         st.write("**Skóre sentimentu:**", results['sentiment_score'])
 
         # Upozornenie, ak sú zistené problematické časti
-        if results['num_negative_terms'] > 0 or results['sentiment'] == 'Negatívny':
-            st.warning("Pozor! Text obsahuje potenciálne zaujaté alebo hanlivé výrazy.")
+        if results['num_negative_terms'] > 0:
+            st.warning("Pozor! Text obsahuje hanlivé výrazy.")
+        elif results['sentiment'] == 'Negatívny':
+            st.warning("Pozor! Text má negatívny sentiment.")
         else:
             st.success("Text neobsahuje výrazné známky zaujatosti.")
 
@@ -67,3 +69,4 @@ def analyze_text(text):
 
 if __name__ == "__main__":
     main()
+
